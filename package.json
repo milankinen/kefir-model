@@ -26,7 +26,7 @@
     "immutable": "3.x.x"
   },
   "peerDependencies": {
-    "kefir": "3.x.x",
+    "kefir": "3.x.x"
   },
   "devDependencies": {
     "babel": "^5.8.34",
