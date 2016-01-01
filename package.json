@@ -1,6 +1,6 @@
 {
   "name": "kefir-model",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reactive model for Kefir",
   "main": "lib/model.js",
   "scripts": {
