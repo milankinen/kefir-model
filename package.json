@@ -22,9 +22,11 @@
   ],
   "author": "Matti Lankinen <m.lankinen@iki.fi> (https://github.com/milankinen)",
   "license": "MIT",
+  "dependencies": {
+    "immutable": "3.x.x"
+  },
   "peerDependencies": {
     "kefir": "3.x.x",
-    "immutable": "3.x.x"
   },
   "devDependencies": {
     "babel": "5.8.23",
