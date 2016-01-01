@@ -1,0 +1,38 @@
+{
+  "name": "kefir-model",
+  "version": "0.1.0",
+  "description": "Reactive model for Kefir",
+  "main": "lib/model.js",
+  "scripts": {
+    "prepublish": "npm run dist",
+    "dist": "babel src --source-maps inline --out-dir lib",
+    "test": "npm run lint && npm run tape",
+    "tape": "babel-tape-runner 'test/**/*Test.js'",
+    "tape:one": "babel-tape-runner",
+    "lint": "eslint src test examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:milankinen/kefir-model.git"
+  },
+  "keywords": [
+    "kefir",
+    "frp",
+    "reactive"
+  ],
+  "author": "Matti Lankinen <m.lankinen@iki.fi> (https://github.com/milankinen)",
+  "license": "MIT",
+  "peerDependencies": {
+    "kefir": "3.x.x",
+    "immutable": "3.x.x"
+  },
+  "devDependencies": {
+    "babel": "5.8.23",
+    "babel-eslint": "4.1.3",
+    "babel-tape-runner": "1.2.0",
+    "eslint": "1.6.0",
+    "eslint-plugin-react": "3.8.0",
+    "faucet": "0.0.1",
+    "tape": "4.2.1"
+  }
+}
