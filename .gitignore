@@ -5,3 +5,5 @@ logs
 *.log
 
 .idea
+
+bundle.js

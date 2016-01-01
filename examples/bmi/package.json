@@ -1,0 +1,25 @@
+{
+  "name": "kefir-model-bmi-example",
+  "version": "0.0.1",
+  "author": "Matti Lankinen <m.lankinen@iki.fi>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "browserify index.js -t babelify > bundle.js && open index.html",
+    "watch": "watchify -v -t babelify -o bundle.js index.js"
+  },
+  "dependencies": {
+    "babelify": "^6.4.0",
+    "browserify": "^12.0.1",
+    "immutable": "^3.7.6",
+    "kefir": "^3.2.0",
+    "kefir-model": "latest",
+    "react": "^0.14.5",
+    "react-combinators": "^0.3.0",
+    "react-dom": "0.14.5",
+    "watchify": "^3.6.1"
+  },
+  "engines": {
+    "node": "4.2.x"
+  }
+}
