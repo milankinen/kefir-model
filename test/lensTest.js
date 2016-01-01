@@ -17,15 +17,21 @@ test("Model lenses", suite => {
     m.setIn("bar", 3)
     m.setIn("foo", 4)
   })
-  suite.test("propagates changes to parent model", t => {
+  suite.test("propagate changes to parent model", t => {
     const m = Model({foo: 1, bar: 2})
     m.onValue(expectSeq(t, [{foo: 1, bar: 2}, {foo: 2, bar: 2}]))
     m.lens("foo").set(2)
   })
-  suite.test("supports nested lenses", t => {
+  suite.test("support nested lenses", t => {
     const m = Model({foo: 1, nested: {bar: 2}})
     m.onValue(expectSeq(t, [{foo: 1, nested: {bar: 2}}, {foo: 1, nested: {bar: 1}}]))
     m.lens("nested.bar").set(1)
+  })
+  suite.test("allow lenses creation for non-existing properties", t => {
+    const m = Model({})
+    const nonExisting = m.lens("non.existing")
+    nonExisting.onValue(expectSeq(t, [undefined, "tsers"]))
+    nonExisting.set("tsers")
   })
 })
 

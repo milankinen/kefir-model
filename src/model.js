@@ -48,7 +48,7 @@ function Model(state, model, emit, pool) {
     if (!propCache[key]) {
       propCache[key] =
         model
-          .map(m => key in m ? m[key] : undefined)
+          .map(m => m && key in m ? m[key] : undefined)
           .skipDuplicates()
           .map(toJS)
           .toProperty()
