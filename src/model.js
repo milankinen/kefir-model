@@ -34,27 +34,27 @@ export default (...args) => {
       .merge(pool)
       .map(() => state.get())
       .skipDuplicates()
-      .map(toJS)
       .toProperty()
 
   return Model(state, root, () => emitter && emitter.emit(), pool)
 }
 
-function Model(state, model, emit, pool) {
+function Model(state, thisObs, emit, pool) {
   const subModels = {}
   const propCache = {}
 
   const getProp = key => {
     if (!propCache[key]) {
       propCache[key] =
-        model
-          .map(m => m && key in m ? m[key] : undefined)
+        thisObs
+          .map(m => m && m.get && m.get(key))
           .skipDuplicates()
-          .map(toJS)
           .toProperty()
     }
     return propCache[key]
   }
+
+  const model = thisObs.map(toJS).toProperty()
 
   model.get = () => toJS(state.get())
 
@@ -98,7 +98,7 @@ function Model(state, model, emit, pool) {
 
 class RootState {
   constructor(value) {
-    this.state = Immutable.fromJS(value)
+    this.state = value
   }
   getRoot() {
     return this
@@ -107,16 +107,16 @@ class RootState {
     return []
   }
   set(value) {
-    this.state = Immutable.fromJS(value)
+    this.state = value
   }
   setIn(path, value) {
     this.state = this.state.setIn(path, value)
   }
   get() {
-    return toJS(this.state)
+    return this.state
   }
   getIn(path) {
-    return toJS(this.state.getIn(path))
+    return this.state.getIn(path)
   }
 }
 
